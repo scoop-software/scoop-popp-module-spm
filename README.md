@@ -38,7 +38,9 @@ re‑released per Xcode major version).
 import ScoopPopp
 ```
 
-API documentation is available inline in Xcode as **Quick Help** (⌥‑click any symbol).
+API documentation is available inline in Xcode as **Quick Help** (⌥‑click any symbol). The
+full written API reference (incl. the PoPP check‑in section) is at
+**[cardlink-sdk-demos/docs/API.md](https://github.com/scoop-software/cardlink-sdk-demos/blob/main/docs/API.md)**.
 
 ## Versioning
 
