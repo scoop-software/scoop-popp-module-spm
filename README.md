@@ -1,28 +1,48 @@
-# PoPP Module — Swift Package Mirror
+# ScoopPopp — Swift Package (binary distribution)
 
-Public Swift Package Manager distribution for the **PoPP Module** (Proof of Patient Presence module for German eHealth Cardlink workflows). This repository hosts only the `Package.swift` manifest and the XCFramework binary releases — the SDK source lives in the private [`scoop-software/scoop-popp-module`](https://github.com/scoop-software/scoop-popp-module) repository.
+Public Swift Package Manager distribution of the **PoPP Module** (Proof of Patient
+Presence) for German eHealth Cardlink workflows. This repo hosts only `Package.swift` +
+the `ScoopPopp.xcframework` release binary; the SDK source stays in the private
+[`scoop-software/scoop-popp-module`](https://github.com/scoop-software/scoop-popp-module) repo.
 
-## Usage
+> **Current release: 0.18.0** · iOS 14+ · **Xcode 26+** · Apple‑Silicon simulator only
 
-In your app or framework's `Package.swift`:
+> **Note:** if you use the **Cardlink SDK** ([`ScoopCardlink`](https://github.com/scoop-software/cardlink-sdk-spm)),
+> PoPP is already bundled inside it — you do **not** need this package. Use this package
+> only to consume PoPP standalone, without Cardlink.
+
+## Install
 
 ```swift
-dependencies: [
-    .package(url: "https://github.com/scoop-software/scoop-popp-module-spm.git", from: "0.17.0")
-]
+.package(url: "https://github.com/scoop-software/scoop-popp-module-spm.git", from: "0.18.0")
 ```
 
-Or in Xcode: File → Add Package Dependencies… → enter the URL above.
+…or in Xcode: **File → Add Package Dependencies…** and paste the URL above.
 
-Then import the framework where needed:
+## Required build settings (Xcode 26)
+
+The framework ships a binary `.swiftmodule` (no library evolution). On the target that
+imports `ScoopPopp`, set:
+
+| Setting | Value | Why |
+| ------- | ----- | --- |
+| `SWIFT_ENABLE_EXPLICIT_MODULES` | `NO` | Xcode 26's explicit‑module build otherwise rebuilds the framework interface and drops the SDK's Swift types. |
+| `EXCLUDED_ARCHS[sdk=iphonesimulator*]` | `x86_64` | The simulator slice is arm64 only (Apple Silicon). |
+
+The binary is tied to its build's Swift compiler — **use Xcode 26.x** (rebuilt and
+re‑released per Xcode major version).
+
+## Usage
 
 ```swift
 import ScoopPopp
 ```
 
+API documentation is available inline in Xcode as **Quick Help** (⌥‑click any symbol).
+
 ## Versioning
 
-Tags in this repository (`v0.17.0`, `v0.18.0`, …) correspond 1:1 with releases of the underlying PoPP module.
+Tags (`v0.18.0`, …) map 1:1 to the underlying PoPP module release.
 
 ## License
 
