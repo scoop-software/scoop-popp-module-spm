@@ -1,3 +1,11 @@
+> ## ⚠️ Deprecated — moved to `cardlink-packages`
+> The PoPP module is now distributed from the unified
+> **[scoop-software/cardlink-packages](https://github.com/scoop-software/cardlink-packages)**
+> repo (iOS SPM product `ScoopPopp`, and the Android Maven artifact — all
+> credential-free). Update your SPM dependency URL to `cardlink-packages.git`.
+> This mirror is retained only so existing pins keep resolving and will not receive
+> new releases.
+
 # ScoopPopp — Swift Package (binary distribution)
 
 Public Swift Package Manager distribution of the **PoPP Module** (Proof of Patient
